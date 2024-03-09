@@ -19,3 +19,4 @@ spec:
           image: memcached
           ports:
             - containerPort: 11211
+
