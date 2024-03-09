@@ -1,4 +1,4 @@
-apiVersion: app/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vpromq01
@@ -18,8 +18,8 @@ spec:
         - name: vpromq01
           image: rabbitmq
           ports:
-            -name: vpromq01-port
-             containerPort: 15672
+            - name: vpromq01-port
+              containerPort: 15672
           env:
             - name: RABBITMQ_DEFAULT_PASS
               valueFrom:
