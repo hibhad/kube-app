@@ -14,8 +14,6 @@ spec:
       labels:
         app: vprodb
     spec:
-      nodeSelector:
-        zone: us-east-1a
       containers:
         - name: vprodb
           image: hibhad/vprofiledb:v1
@@ -28,10 +26,12 @@ spec:
                 secretKeyRef:
                   name: app-secret
                   key: db-pass
+      nodeSelector:
+        zone: us-east-1b
       volumes:
         - name: vpro-db-data
           awsElasticBlockStore:
-            volumeID: vol-0bcd6bddaa2c94232
+            volumeID: vol-0e4f6d99ae53fea6f
             fsType: ext4
       initContainers:
         - name: cleanup-lost-found
@@ -40,3 +40,4 @@ spec:
           volumeMounts:
             - name: vpro-db-data
               mountPath: /var/lib/mysql
+
