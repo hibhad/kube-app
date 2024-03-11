@@ -26,6 +26,15 @@ spec:
                 secretKeyRef:
                   name: app-secret
                   key: db-pass
+      tolerations:
+        - key: node.kubernetes.io/not-ready
+          operator: Exists
+          effect: NoExecute
+          tolerationSeconds: 600  # Adjust the duration as needed
+        - key: node.kubernetes.io/unreachable
+          operator: Exists
+          effect: NoExecute
+          tolerationSeconds: 600  # Adjust the duration as needed
       nodeSelector:
         zone: us-east-1b
       volumes:
@@ -40,5 +49,6 @@ spec:
           volumeMounts:
             - name: vpro-db-data
               mountPath: /var/lib/mysql
+
 
 
