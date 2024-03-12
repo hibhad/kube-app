@@ -17,6 +17,9 @@ spec:
       containers:
         - name: vprodb
           image: hibhad/vprofiledb:v1
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: vpro-db-data
           ports:
             - name: vprodb-port
               containerPort: 3306
@@ -26,15 +29,6 @@ spec:
                 secretKeyRef:
                   name: app-secret
                   key: db-pass
-      tolerations:
-        - key: node.kubernetes.io/not-ready
-          operator: Exists
-          effect: NoExecute
-          tolerationSeconds: 600  # Adjust the duration as needed
-        - key: node.kubernetes.io/unreachable
-          operator: Exists
-          effect: NoExecute
-          tolerationSeconds: 600  # Adjust the duration as needed
       nodeSelector:
         zone: us-east-1b
       volumes:
@@ -42,6 +36,7 @@ spec:
           awsElasticBlockStore:
             volumeID: vol-0e4f6d99ae53fea6f
             fsType: ext4
+
       initContainers:
         - name: cleanup-lost-found
           image: busybox
@@ -49,6 +44,7 @@ spec:
           volumeMounts:
             - name: vpro-db-data
               mountPath: /var/lib/mysql
+
 
 
 
