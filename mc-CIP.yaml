@@ -5,7 +5,7 @@ metadata:
 spec:
   ports:
     - port: 11211
-      targetPort: 11211
+      targetPort: vpromc-port
       protocol: TCP
   selector:
     app: vpromc
