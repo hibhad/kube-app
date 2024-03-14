@@ -18,6 +18,6 @@ spec:
         - name: vpromc
           image: memcached
           ports:
-            - name: vpromc
+            - name: vpromc-port
               containerPort: 11211
 
