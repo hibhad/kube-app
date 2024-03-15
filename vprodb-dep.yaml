@@ -36,8 +36,7 @@ spec:
           awsElasticBlockStore:
             volumeID: vol-0e4f6d99ae53fea6f
             fsType: ext4
-
-      initContainers:
+       initContainers:
         - name: cleanup-lost-found
           image: busybox
           command: ["sh", "-c", "rm -rf /var/lib/mysql/lost+found"]
